@@ -1,7 +1,7 @@
 // A graphql schema that imports
 // different types
 
-const { GraphQLObjectType, GraphQLString, GraphQLInt } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema } = require('graphql');
 
 // Define TaskType
 const TaskType = new GraphQLObjectType({
@@ -14,4 +14,20 @@ const TaskType = new GraphQLObjectType({
   },
 });
 
-module.exports = { TaskType };
+// Define RootQuery
+const RootQueryType = new GraphQLObjectType({
+  name: 'RootQueryType',
+  fields: {
+    task: {
+      type: TaskType,
+      args: {
+        id: { type: GraphQLString }, 
+      },
+      resolve(parent, args) {},
+    },
+  },
+});
+
+module.exports = new GraphQLSchema({
+  query: RootQueryType
+});

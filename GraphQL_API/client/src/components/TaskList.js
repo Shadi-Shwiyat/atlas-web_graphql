@@ -1,26 +1,38 @@
-import {
-  useState,
-  //useEffect
-} from "react";
+import React from "react";
+import { useState } from "react";
+import { graphql } from "react-apollo";
+import gql from "apollo-boost";
+
 // components
 import TaskDetails from './TaskDetails';
 
+// Define the GraphQL query
+const getTasksQuery = gql`
+  {
+    tasks {
+      id
+      title
+    }
+  }
+`;
+
 function TaskList(props) {
+  
   const [state, setState] = useState({
     selected: null
   });
 
-  return ( <
-    div >
-    <
-    ul id = "task-list" > {
+  console.log(props);
 
-    } <
-    /ul>  <
-    TaskDetails /
-    > < /
-    div >
+  return ( 
+    <div>
+      <ul id="task-list">
+        {/* Task list will be populated here */}
+      </ul>
+      <TaskDetails/>
+    </div>
   );
 }
 
-export default TaskList;
+// Bind the query to the component
+export default graphql(getTasksQuery)(TaskList);

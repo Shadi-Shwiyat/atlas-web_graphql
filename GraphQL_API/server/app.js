@@ -11,9 +11,10 @@ const app = express();
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://shadishwiyat:mUTY6AkuLO6bGO3K@graphql.mdj3qhd.mongodb.net/', { useUnifiedTopology: true, useNewUrlParser: true });
-mongoose.connection.once('open', () =>
-  console.log('connected to database')
-);
+mongoose.connection.once('open', () => {
+  console.log('connected to database');
+  // console.log(`this is the db: ${mongoose.connection}`);
+});
 
 app.use('/graphql',graphqlHTTP({
   schema: schema,

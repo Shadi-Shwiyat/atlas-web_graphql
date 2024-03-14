@@ -1,37 +1,7 @@
 import React, { useState } from "react";
 import { graphql } from 'react-apollo';
 import { flowRight as compose } from 'lodash';
-import { gql } from "apollo-boost";
-
-// Project query
-const getProjectsQuery = gql`
-  {
-    projects {
-      id
-      title
-    }
-  }
-`;
-
-// Task query
-const getTasksQuery = gql`
-  {
-    tasks {
-      id
-      title
-    }
-  }
-`;
-
-// Mutation query
-const addTaskMutation = gql`
-  mutation($title: String!, $weight: Int!, $description: String!, $projectId: ID!) {
-    addTask(title: $title, weight: $weight, description: $description, projectId: $projectId) {
-      title
-      id
-    }
-  }
-`;
+import { getProjectsQuery, getTasksQuery, addTaskMutation } from '../queries/queries';
 
 
 function AddTask(props) {

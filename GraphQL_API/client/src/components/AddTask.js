@@ -42,7 +42,7 @@ function AddTask(props) {
         setInputs(newInputs)
   }
 
-  const handleSubmit = (e) => {
+  const submitForm = (e) => {
     e.preventDefault();
     props.addTaskMutation({
       variables: {
@@ -57,7 +57,7 @@ function AddTask(props) {
 
 
   return (
-  <form className="task" id="add-task" onSubmit={handleSubmit}>
+  <form className="task" id="add-task" onSubmit={submitForm}>
     <div className="field">
       <label>Task title:</label>
       <input

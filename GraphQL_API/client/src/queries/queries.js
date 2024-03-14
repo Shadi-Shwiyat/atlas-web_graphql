@@ -20,7 +20,7 @@ export const getTasksQuery = gql`
   }
 `;
 
-// Mutation query
+// Task mutation query
 export const addTaskMutation = gql`
   mutation($title: String!, $weight: Int!, $description: String!, $projectId: ID!) {
     addTask(title: $title, weight: $weight, description: $description, projectId: $projectId) {
@@ -30,3 +30,12 @@ export const addTaskMutation = gql`
   }
 `;
 
+// Project mutation query
+export const addProjectMutation = gql`
+  mutation($title: String!, $weight: Int!, $description: String!) {
+    addProject(title: $title, weight: $weight, description: $description) {
+      title
+      id
+    }
+  }
+`;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { graphql } from "react-apollo";
-import gql from "apollo-boost";
+import { gql } from "apollo-boost";
 
 // components
 import TaskDetails from './TaskDetails';
@@ -22,12 +22,27 @@ function TaskList(props) {
     selected: null
   });
 
-  console.log(props);
+  // console.log(props);
+
+  function displayTasks() {
+    var data = props.data;
+    if(data.loading) {
+      return <div>Loading tasks...</div>;
+    } else {
+      return data.tasks.map(task => {
+        return (
+          <li key={task.id} onClick={(e) => setState({ selected: task.id })}>
+            {task.title}
+          </li>
+        );
+      });
+    }
+  }
 
   return ( 
     <div>
       <ul id="task-list">
-        {/* Task list will be populated here */}
+        {displayTasks()}
       </ul>
       <TaskDetails/>
     </div>

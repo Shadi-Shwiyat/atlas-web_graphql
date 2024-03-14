@@ -156,7 +156,7 @@ const RootQueryType = new GraphQLObjectType({
     projects: {
       type: new GraphQLList(ProjectType),
       resolve(parent, args) {
-        return Project
+        return Project.find({});
       }
     },
   },
